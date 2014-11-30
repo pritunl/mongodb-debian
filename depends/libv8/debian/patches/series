@@ -1,0 +1,7 @@
+0001_kfreebsd.patch
+0008_mksnapshot_stdout.patch
+0011_use_system_gyp.patch
+0012_loongson_force_cache_flush.patch
+0013_gcc_48_compat.patch
+0014_cve_2013_6639_6640.patch
+0099_powerpc_support.patch
