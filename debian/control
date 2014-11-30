@@ -1,0 +1,107 @@
+Source: mongodb
+Section: database
+Priority: optional
+Maintainer: Pritunl <contact@pritunl.com>
+Build-Depends:
+ debhelper (>= 9),
+ dh-systemd (>= 1.5),
+ libboost-date-time1.54-dev,
+ libboost1.54-dev (>> 1.50),
+ libboost-filesystem1.54-dev,
+ libboost-program-options1.54-dev,
+ libboost-thread1.54-dev,
+ libgoogle-perftools-dev [linux-amd64 linux-i386 armhf ppc64el],
+ libpcap-dev,
+ libpcre3-dev,
+ libreadline-dev,
+ libsnappy-dev,
+ libssl-dev,
+ libstemmer-dev,
+ libv8-3.14-dev (>= 3.12) [!arm64],
+ libyaml-cpp-dev,
+ python-pymongo,
+ scons
+Standards-Version: 3.9.5
+Vcs-Git: git://anonscm.debian.org/collab-maint/mongodb.git
+Vcs-Browser: http://anonscm.debian.org/git/collab-maint/mongodb.git
+Homepage: http://www.mongodb.org
+XS-Testsuite: autopkgtest
+
+Package: mongodb
+Architecture: amd64 i386 kfreebsd-amd64 kfreebsd-i386 hurd-any armhf ppc64el arm64
+Depends:
+ mongodb-server (>= 1:2.4.1-2),
+ ${misc:Depends},
+ ${shlibs:Depends}
+Description: object/document-oriented database (metapackage)
+ MongoDB is a high-performance, open source, schema-free
+ document-oriented data store that's easy to deploy, manage
+ and use. It's network accessible, written in C++ and offers
+ the following features:
+ .
+    * Collection oriented storage - easy storage of object-style data
+    * Full index support, including on inner objects
+    * Query profiling
+    * Replication and fail-over support
+    * Efficient storage of binary data including large objects (e.g. videos)
+    * Auto-sharding for cloud-level scalability
+ .
+ High performance, scalability, and reasonable depth of
+ functionality are the goals for the project.
+ .
+ This is a convenience metapackage that depends on all the mongodb parts:
+ the server and the clients.
+
+Package: mongodb-server
+Architecture: amd64 i386 kfreebsd-amd64 kfreebsd-i386 hurd-any armhf ppc64el arm64
+Depends:
+ adduser,
+ mongodb-clients,
+ ${misc:Depends},
+ ${shlibs:Depends}
+Replaces:
+ mongodb (<= 1:1.4.2-2)
+Description: object/document-oriented database (server package)
+ MongoDB is a high-performance, open source, schema-free
+ document-oriented data store that's easy to deploy, manage
+ and use. It's network accessible, written in C++ and offers
+ the following features:
+ .
+    * Collection oriented storage - easy storage of object-style data
+    * Full index support, including on inner objects
+    * Query profiling
+    * Replication and fail-over support
+    * Efficient storage of binary data including large objects (e.g. videos)
+    * Auto-sharding for cloud-level scalability
+ .
+ High performance, scalability, and reasonable depth of
+ functionality are the goals for the project.
+ .
+ This package contains the server itself  (mongod) and the sharding
+ server/load-balancer (mongos).
+
+Package: mongodb-clients
+Architecture: amd64 i386 kfreebsd-amd64 kfreebsd-i386 hurd-any armhf ppc64el arm64
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends}
+Replaces:
+ mongodb (<= 1:1.4.2-2)
+Description: object/document-oriented database (client apps)
+ MongoDB is a high-performance, open source, schema-free
+ document-oriented data store that's easy to deploy, manage
+ and use. It's network accessible, written in C++ and offers
+ the following features:
+ .
+    * Collection oriented storage - easy storage of object-style data
+    * Full index support, including on inner objects
+    * Query profiling
+    * Replication and fail-over support
+    * Efficient storage of binary data including large objects (e.g. videos)
+    * Auto-sharding for cloud-level scalability
+ .
+ High performance, scalability, and reasonable depth of
+ functionality are the goals for the project.
+ .
+ This package contains the standard administrative shell (mongo) and other
+ utilities for administration or analysis of performance of the server.

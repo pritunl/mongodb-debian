@@ -1,0 +1,46 @@
+Description: Ensure comparisons are between identical types
+ gcc4.9/Ubuntu Utopic throws errors when signed and unsiged
+ int types are compared.
+ .
+ This patch ensures that type signing matches.
+Author: James Page <james.page@ubuntu.com>
+Forwarded: no
+
+--- a/src/mongo/util/cmdline_utils/censor_cmdline_test.cpp
++++ b/src/mongo/util/cmdline_utils/censor_cmdline_test.cpp
+@@ -116,7 +116,7 @@ namespace {
+             "--servicePassword",
+             "xxxxxxxxxxxxxxxx"
+         };
+-        ASSERT_EQUALS(static_cast<int>(boost::size(expected)), argc);
++        ASSERT_EQUALS(boost::size(expected), argc);
+ 
+         testCensoringArgv(expected, argv, argc);
+     }
+@@ -148,7 +148,7 @@ namespace {
+             "-servicePassword",
+             "xxxxxxxxxxxxxxxx"
+         };
+-        ASSERT_EQUALS(static_cast<int>(boost::size(expected)), argc);
++        ASSERT_EQUALS(boost::size(expected), argc);
+ 
+         testCensoringArgv(expected, argv, argc);
+     }
+@@ -197,7 +197,7 @@ namespace {
+             "--servicePassword",
+             "<password>"
+         };
+-        ASSERT_EQUALS(static_cast<int>(boost::size(expected)), argc);
++        ASSERT_EQUALS(boost::size(expected), argc);
+ 
+         testCensoringVector(expected, argv, argc);
+     }
+@@ -229,7 +229,7 @@ namespace {
+             "-servicePassword",
+             "<password>"
+         };
+-        ASSERT_EQUALS(static_cast<int>(boost::size(expected)), argc);
++        ASSERT_EQUALS(boost::size(expected), argc);
+ 
+         testCensoringVector(expected, argv, argc);
+     }

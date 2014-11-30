@@ -1,0 +1,15 @@
+0001-Create-kfreebsd-like-linux-in-most-respects.patch
+0002-kfreebsd-has-dev-urandom.patch
+0004-kfreebsd-does-not-have-sys-prctl.h.patch
+0006-Fix-ARM-alignment-problems.patch
+0007-Use-TIME_UTC_-macro.patch
+0009-ignore-unused-local-typedefs.patch
+0010-fix-integer-signs.patch
+# Added for arm64 and ppc64el enablement
+0001-Add-option-to-disable-javascript.patch
+0004-Support-ppc64el-builds.patch
+0099-Pagesize-hacks.patch
+fix-yaml-detection.patch
+0012-support-gnu.patch
+no-unused-function.patch
+fix-signed-checks.patch

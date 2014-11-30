@@ -1,0 +1,28 @@
+From: Jeff Epler <jepler@unpythonic.net>
+Date: Fri, 19 Apr 2013 08:15:18 -0500
+Subject: Create kfreebsd like linux in most respects
+
+---
+ SConstruct | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+--- a/SConstruct
++++ b/SConstruct
+@@ -66,7 +66,7 @@ solaris = False
+ if "darwin" == platform:
+     darwin = True
+     platform = "osx" # prettier than darwin
+-elif platform.startswith("linux"):
++elif platform.startswith("linux") or platform.startswith("gnukfreebsd"):
+     linux = True
+     platform = "linux"
+ elif "sunos5" == platform:
+@@ -526,6 +526,8 @@ libdeps.setup_environment( env )
+ 
+ if env['PYSYSPLATFORM'] == 'linux3':
+     env['PYSYSPLATFORM'] = 'linux2'
++if 'gnukfreebsd' in env['PYSYSPLATFORM']:
++    env['PYSYSPLATFORM'] = 'linux2'
+ if 'freebsd' in env['PYSYSPLATFORM']:
+     env['PYSYSPLATFORM'] = 'freebsd'
+ 

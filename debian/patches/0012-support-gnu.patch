@@ -1,0 +1,31 @@
+--- a/SConstruct
++++ b/SConstruct
+@@ -66,7 +66,7 @@ solaris = False
+ if "darwin" == platform:
+     darwin = True
+     platform = "osx" # prettier than darwin
+-elif platform.startswith("linux") or platform.startswith("gnukfreebsd"):
++elif platform.startswith("linux") or platform.startswith("gnukfreebsd") or os.sys.platform.startswith("gnu0"):
+     linux = True
+     platform = "linux"
+ elif "sunos5" == platform:
+@@ -535,6 +535,8 @@ if 'gnukfreebsd' in env['PYSYSPLATFORM']
+     env['PYSYSPLATFORM'] = 'linux2'
+ if 'freebsd' in env['PYSYSPLATFORM']:
+     env['PYSYSPLATFORM'] = 'freebsd'
++if 'gnu0' in env['PYSYSPLATFORM']:
++    env['PYSYSPLATFORM'] = 'gnu'
+ 
+ if os.sys.platform == 'win32':
+     env['OS_FAMILY'] = 'win'
+--- a/src/mongo/platform/random.cpp
++++ b/src/mongo/platform/random.cpp
+@@ -105,7 +105,7 @@ namespace mongo {
+         return new WinSecureRandom();
+     }
+ 
+-#elif defined(__linux__) || defined(__sunos__) || defined(__APPLE__) || defined(__FreeBSD_kernel__)
++#elif defined(__linux__) || defined(__sunos__) || defined(__APPLE__) || defined(__FreeBSD_kernel__) || defined(__GNU__)
+ 
+     class InputStreamSecureRandom : public SecureRandom {
+     public:

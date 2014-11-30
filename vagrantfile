@@ -1,0 +1,10 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.provision "shell",
+    inline: "apt-get update -qq; apt-get install -qq -y build-essential devscripts dh-make cdbs debhelper dh-buildinfo gyp perl dpkg-dev dctrl-tools zlib1g-dev libbz2-dev libicu-dev bison flex docbook-to-man help2man xsltproc doxygen dh-python python python-all-dev python3 python3-all-dev; apt-get build-dep -qq -y mongodb"
+end

@@ -1,0 +1,8 @@
+mongodb (1:2.6.3-0ubuntu1) utopic; urgency=medium
+
+  Please refer to the upstream upgrade notes for MongoDB 2.6 before upgrading
+  from MongoDB 2.4:
+
+      http://docs.mongodb.org/manual/release-notes/2.6-upgrade/
+
+ -- James Page <james.page@ubuntu.com>  Tue, 01 Jul 2014 09:22:09 +0100
