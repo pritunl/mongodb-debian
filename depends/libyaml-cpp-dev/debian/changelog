@@ -1,0 +1,16 @@
+yaml-cpp (0.5.1-0ubuntu1) unstable; urgency=low
+
+  * New upstream release. (Closes: #706708)
+  * Bump Standards-Version to 3.9.4.
+  * libyaml-cpp-dev: remove multiarch path in yaml-cpp.pc to make
+    lintian happy.
+  * debian/copyright: new Format URI.
+  * debian/control: remove Vcs-Svn field.
+
+ -- Pritunl <contact@pritunl.com>  Fri, 30 Aug 2013 18:29:05 +0800
+
+yaml-cpp (0.3.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #636985)
+
+ -- Lifeng Sun <lifongsun@gmail.com>  Sun, 03 Jun 2012 23:48:30 +0800

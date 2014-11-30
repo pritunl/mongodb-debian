@@ -1,0 +1,47 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+CPPFLAGS :=$(shell dpkg-buildflags --get CPPFLAGS)
+CFLAGS   :=$(shell dpkg-buildflags --get CFLAGS)
+CXXFLAGS :=$(shell dpkg-buildflags --get CXXFLAGS)
+LDFLAGS  :=$(shell dpkg-buildflags --get LDFLAGS)
+
+export DEB_HOST_MULTIARCH CPPFLAGS CFLAGS CXXFLAGS LDFLAGS
+
+override_dh_auto_configure:
+	dh_testdir
+	mkdir build-static; cd build-static; \
+		cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+	mkdir build-shared; cd build-shared; \
+		cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON
+
+override_dh_auto_build:
+	dh_testdir
+	$(MAKE) -C build-static
+	$(MAKE) -C build-shared
+
+override_dh_auto_install:
+	dh_testdir
+	dh_prep
+	$(MAKE) -C build-static install DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) -C build-shared install DESTDIR=$(CURDIR)/debian/tmp
+	mkdir debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)
+	mv debian/tmp/usr/lib/lib* debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/
+
+clean:
+	dh_testdir
+	dh_auto_clean
+	dh_clean
+	rm -rf build-static build-shared
+
+%:
+	dh $@
+
+.PHONY: clean

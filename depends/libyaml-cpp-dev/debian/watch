@@ -1,0 +1,2 @@
+version=3
+http://code.google.com/p/yaml-cpp/downloads/list .*yaml-cpp-([0-9].*)\.tar\.gz
